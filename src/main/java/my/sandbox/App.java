@@ -2,18 +2,17 @@ package my.sandbox;
 
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-//import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Collections;
 
-//@ComponentScan
-//@EnableAutoConfiguration
 @SpringBootApplication
-//@EnableSwagger2
-public class App {
+@EnableSwagger2
+@EnableWebMvc
+public class App extends SpringBootServletInitializer {
     private static final Logger userLogger = Logger.getLogger(App.class);
     private static final int BACKEND_PORT = 8083;
 

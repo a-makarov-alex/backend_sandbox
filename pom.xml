@@ -114,22 +114,21 @@
             <scope>provided</scope>
         </dependency>-->
 
-        <!-- springfox-swagger2
-        НЕСОВМЕСТИМОСТЬ ВЕРСИЙ С СПРИНГБУТ 5.7.0!!
-        просто для наличия сваггера. Не разбирался.
+        <!-- SWAGGER -->
         <dependency>
             <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
-        </dependency> -->
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
 
-        <!-- springfox-swagger-ui
-        просто для наличия сваггера. Не разбирался.
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
-        </dependency> -->
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
 
         <!-- log4j -->
         <dependency>
