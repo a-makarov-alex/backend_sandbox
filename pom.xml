@@ -44,6 +44,14 @@
                 <version>${maven.surefire.plugin}</version>
             </plugin>
 
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
             <!-- maven-surefire-report-plugin -->
             <!-- плагин не интересный. Лучше allure.
             Оставляю, чтобы не забыть, что был опыт его использования для создаиня HTML отчета -->
