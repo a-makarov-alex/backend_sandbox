@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>backend_sandbox</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <junit.jupiter.version>5.8.2</junit.jupiter.version>
+        <maven.surefire.plugin>3.0.0-M5</maven.surefire.plugin>
+    </properties>
+
+    <!-- Сюда будет отправлен артефакт после mvn deploy
+     данные нексуса см. в settings.xml -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!-- Текущий файл pom наследуется от spring-boot-starter-parent,
+    и многие конфигурации по умолчанию предоставляются в spring-boot-starter-parent.
+    Это обеспечивает управление зависимостями и плагинами для приложений на основе Spring Boot.
+    Подробно не разбирался, т.к. это не целевая технология для тестирования -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.0</version>
+    </parent>
+
+    <build>
+        <plugins>
+            <!-- maven-surefire-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin}</version>
+            </plugin>
+
+            <!-- maven-surefire-report-plugin -->
+            <!-- плагин не интересный. Лучше allure.
+            Оставляю, чтобы не забыть, что был опыт его использования для создаиня HTML отчета -->
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${maven.surefire.plugin}</version>
+            </plugin>-->
+
+            <!-- spring-boot-maven-plugin нужен, чтобы jar файл бы запускаемым -
+            т.е. нужна только java, а контейнер для запуска будет внутри jar (tomcat по умолчанию).
+            Он становится запускаемым т.к. в манифест прописывается имя класса с main-методом.
+            Без него можно выполнить ручной деплой в контейнер (например, wildfly), для этого main-метод не нужен -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <!-- junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- junit-jupiter-engine -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- spring-boot-starter-web
+        Starter для создания web, включая RESTful, приложений, используя Spring MVC.
+        Использует Tomcat как встроенный контейнер по умолчанию -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.2.2.RELEASE</version>
+        </dependency>
+
+        <!-- springfox-swagger2
+        НЕСОВМЕСТИМОСТЬ ВЕРСИЙ С СПРИНГБУТ 5.7.0!!
+        просто для наличия сваггера. Не разбирался.
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency> -->
+
+        <!-- springfox-swagger-ui
+        просто для наличия сваггера. Не разбирался.
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency> -->
+
+        <!-- log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+        <!-- ПОПРОБОВАТЬ! -->
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.17.2</version>
+        </dependency>
+
+
+        <!-- lombok
+        это библиотека для сокращения кода в классах и расширения функциональности Java -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+</project>
