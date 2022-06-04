@@ -90,7 +90,21 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>2.2.2.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <!-- Add tomcat only if I want to run directly -->
+        <!-- чтобы в IDEA использовался scope provided, надо:
+        You must activate "Include dependencies with the provided scope" in the run-configuration -->
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>-->
 
         <!-- springfox-swagger2
         НЕСОВМЕСТИМОСТЬ ВЕРСИЙ С СПРИНГБУТ 5.7.0!!
